@@ -1,0 +1,22 @@
+{
+  "name": "dual-capsule",
+  "version": "0.1.0",
+  "description": "双色胶囊 - FC马里奥医生复刻版",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "build": "tsc"
+  },
+  "keywords": ["game", "puzzle", "cocos", "wechat"],
+  "author": "TinMok",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  }
+}
