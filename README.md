@@ -27,60 +27,79 @@ dual-capsule/
 │   ├── scenes/           # 场景文件
 │   ├── scripts/          # TypeScript 脚本
 │   │   ├── core/         # 核心逻辑
-│   │   ├── ui/           # UI 脚本
+│   │   │   ├── Board.ts          # 棋盘管理
+│   │   │   ├── MatchDetector.ts  # 消除检测
+│   │   │   ├── LevelManager.ts   # 关卡管理
+│   │   │   └── EndlessModeManager.ts  # 无限模式
+│   │   ├── ui/           # UI 组件
+│   │   │   ├── GameUI.ts         # 游戏界面
+│   │   │   ├── MenuUI.ts         # 主菜单
+│   │   │   ├── LevelSelectUI.ts  # 关卡选择
+│   │   │   ├── GameOverUI.ts     # 结算界面
+│   │   │   └── CellRenderer.ts   # 格子渲染
 │   │   ├── managers/     # 管理器
+│   │   │   ├── GameManager.ts    # 游戏管理
+│   │   │   ├── SaveManager.ts    # 存档管理
+│   │   │   ├── AudioManager.ts   # 音效管理
+│   │   │   ├── AnimationManager.ts # 动画管理
+│   │   │   └── AchievementManager.ts # 成就系统
 │   │   └── utils/        # 工具类
 │   ├── prefabs/          # 预制体
 │   ├── textures/         # 贴图资源
-│   │   └── *.png.txt     # 图片生成提示词
 │   ├── audio/            # 音频资源
 │   └── animations/       # 动画资源
 ├── docs/                 # 文档
+├── tests/                # 单元测试
 ├── settings/             # 项目设置
 └── README.md
 ```
 
-## Phase 1 完成情况
+## 开发进度
 
-- [x] 棋盘系统 (`Board.ts`)
-- [x] 胶囊控制 - 移动、旋转、下落 (`Board.ts`)
-- [x] 消除检测 (`MatchDetector.ts`)
+### ✅ Phase 1: 核心玩法原型
+- [x] 棋盘系统 (Board.ts)
+- [x] 胶囊控制 - 移动、旋转、下落
+- [x] 消除检测 (MatchDetector.ts)
 - [x] 胜负判定
-- [x] 游戏管理器 (`GameManager.ts`)
-- [x] UI 界面框架 (`GameUI.ts`, `MenuUI.ts`, `CellRenderer.ts`)
-- [x] 触摸控制 (`TouchControls.ts`)
-- [x] 存档管理 (`SaveManager.ts`)
-- [x] 音效管理框架 (`AudioManager.ts`)
-- [x] 对象池优化 (`ObjectPool.ts`)
+- [x] 单元测试框架
 
-## 快速开始
+### ✅ Phase 2: 游戏流程完善
+- [x] 关卡系统 (LevelManager.ts) - 20关卡，星级评价
+- [x] UI 界面 (GameUI, MenuUI, LevelSelectUI, GameOverUI)
+- [x] 分数系统 (连击倍率、病毒加分)
+- [x] 动画管理 (AnimationManager.ts)
+- [x] 成就系统 (AchievementManager.ts)
+- [x] 无限模式 (EndlessModeManager.ts)
 
-### 1. 创建 Cocos Creator 项目
+### 📋 Phase 3: 资源制作
+- [x] 图片资源 (bg, logo, icon 等)
+- [ ] 音效音乐
+- [ ] 特效动画
+- [ ] 粒子效果
 
-```bash
-# 在 Cocos Dashboard 中创建新项目
-# 选择 Cocos Creator 3.8.8
-# 模板选择 Empty(2D)
-```
+### 📋 Phase 4: 微信适配
+- [ ] 小游戏发布
+- [ ] 社交功能
+- [ ] 性能优化
 
-### 2. 复制代码
+### 📋 Phase 5: 测试上线
+- [ ] 内测调优
+- [ ] 提交审核
+- [ ] 正式发布
 
-将 `assets/scripts/` 目录复制到 Cocos Creator 项目的 `assets/` 目录下。
+## 游戏模式
 
-### 3. 生成图片资源
+### 经典关卡模式
+- 20 个精心设计的关卡
+- 难度逐步递增
+- 星级评价系统 (0-3星)
+- 解锁机制
 
-参考 `assets/textures/*.png.txt` 中的提示词，使用 AI 图像生成工具（如 Midjourney、DALL-E、Stable Diffusion）生成图片，保存为对应的 PNG 文件。
-
-### 4. 创建场景
-
-在 Cocos Creator 中：
-1. 创建 `Game` 场景
-2. 添加 `GameManager` 组件
-3. 设置 UI 节点和引用
-
-### 5. 运行测试
-
-点击 Cocos Creator 的运行按钮，即可在浏览器中预览。
+### 无限挑战模式
+- 病毒数量随分数递增
+- 下落速度逐渐加快
+- 追求最高分和最长存活时间
+- 排行榜竞争
 
 ## 操作说明
 
@@ -93,26 +112,33 @@ dual-capsule/
 | 硬降 | Space | 下落按钮 |
 | 暂停 | ESC / P | 暂停按钮 |
 
-## 图片资源说明
+## 图片资源
 
-由于 AI 无法直接生成图片，以下文件包含生成提示词：
+| 文件 | 尺寸 | 用途 |
+|------|------|------|
+| bg.png | 720 x 1280 | 游戏主背景 |
+| bg_menu.png | 720 x 1280 | 主菜单背景 |
+| bg_victory.png | 720 x 1280 | 胜利界面背景 |
+| bg_gameover.png | 720 x 1280 | 失败界面背景 |
+| logo.png | 720 x 1280 | 游戏LOGO |
+| icon.png | 512 x 512 | 应用图标 |
 
-- `bg.png.txt` - 游戏背景
-- 更多资源请参考文件内的提示词
+## 运行测试
 
-使用 AI 图像工具生成后，将文件保存为对应的无 `.txt` 后缀的 PNG 文件。
+```bash
+# 安装依赖
+npm install
+
+# 运行测试
+npm test
+
+# 测试覆盖率
+npm run test:coverage
+```
 
 ## 文档
 
 - [游戏策划案](./docs/GAME_DESIGN.md)
-
-## 开发进度
-
-- [x] Phase 1: 核心玩法原型
-- [ ] Phase 2: 游戏流程完善
-- [ ] Phase 3: 资源制作
-- [ ] Phase 4: 微信适配
-- [ ] Phase 5: 测试上线
 
 ## License
 
